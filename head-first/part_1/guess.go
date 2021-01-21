@@ -9,3 +9,7 @@ func main() {
 	println("Guess number! ")
 	println(num)
 }
+
+// db_blog
+// user_wp
+// wpPass123123
