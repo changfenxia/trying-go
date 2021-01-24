@@ -17,25 +17,30 @@ func main() {
 	// get random number - DONE
 	s1 := rand.NewSource((time.Now().UnixNano()))
 	r1 := rand.New(s1)
-	num := r1.Intn(10)
+	num := r1.Intn(20)
 
+	tries := 3
+	fmt.Println("Guess the number! You have", tries, "guesses!")
 	guess := getInput()
-	tries := 1
 
-	for ;guess != num; {
+	for ;guess != num && tries > 0; {
+		tries--
 		if (guess > num) {
-			fmt.Println("Wrong! Too high! Try again!")
+			fmt.Println("Wrong! Too high! Try again!", tries, "guesses left!")
 		} else {
-			fmt.Println("Yay! Too low... Try again")
+			fmt.Println("Yay! Too low... Try again", tries, "guesses left!")
 		}
 		guess = getInput()
-		tries++
 	}
-	
-	fmt.Println("You are right!")
-	fmt.Println("The number was:", num)
-	fmt.Println("Your guess:", guess)
-	fmt.Println("It took", tries, "tries")
+
+	if tries > 0 {
+		fmt.Println("You are right!")
+		fmt.Println("The number was:", num)
+		fmt.Println("Your guess:", guess)
+		fmt.Println("It took", tries, "tries")
+	} else {
+		fmt.Println("You lost :( The number was: ", num)
+	}
 }
 
 func getInput() int{
